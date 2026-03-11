@@ -1,19 +1,18 @@
 package com.bridgelabz.controller;
 
+import com.bridgelabz.greeting_app.service.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class GreetingController {
 
+    @Autowired
+    private GreetingService greetingService;
+
     @GetMapping("/greeting")
-    public Map<String, String> getGreeting() {
-
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Hello World");
-
-        return response;
+    public String getGreeting() {
+        return greetingService.getGreetingMessage();
     }
 }
